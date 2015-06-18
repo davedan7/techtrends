@@ -11,13 +11,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'materialize-sass'
 gem 'angular-rails-templates'
-gem 'bower-rails'
+# gem 'bower-rails'
+gem 'angularjs-rails'
 gem 'd3-rails'
 gem "c3-rails"
 gem 'pry'
 gem 'omniauth-github'
 gem 'figaro'
 gem 'rails_12factor', group: :production
+gem 'execjs'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'byebug'
