@@ -3,7 +3,7 @@ app.controller('SearchController', ['$scope', 'JobSearch', function($scope, JobS
   $scope.zipcode = "80202";
   $scope.searchWords = "web developer";
   $scope.searchDescription = "";
-  $scope.dataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, tdd: 0, mvc: 0, jquery: 0, json: 0}
+  $scope.dataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, tdd: 0, mvc: 0, jquery: 0, json: 0};
     //   {
     //   key: "Javascript",
     //   y: $scope.dataPoints.javascript
