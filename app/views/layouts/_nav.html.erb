@@ -1,12 +1,12 @@
 
 <!-- dropdown -->
 <ul id="dropdown1" class="dropdown-content nav-item">
-  <%# <% if current_user.nil? %1> %>
+  <% if current_user.nil? %>
     <li><%= link_to "Login with Github", "/auth/github" %></li>
-  <%# <% else %1> %>
-    <%# <li><%= link_to "Log Out", logout_path, class: 'black-text'%></li> %>
-    <%# <li><%= link_to "Searches", user_path(current_user), class: 'black-text' %1></li> %>
-  <%# <% end %1> %>
+  <% else %>
+    <li><%= link_to "Log Out", logout_path, class: 'black-text'%></li>
+    <li><%= link_to "Searches", user_path(current_user), class: 'black-text' %></li>
+  <% end %>
   <li class="divider"></li>
 </ul>
 
@@ -14,21 +14,21 @@
   <div class="nav-wrapper container">
     <a id="logo-container" href="/" class="brand-logo white-text text-lighten-3" id="logo">Logo</a>
     <ul class="right hide-on-med-and-down">
-      <%# <% if current_user.nil? %1> %>
-      <%#   <li><%= link_to "Login with Github", "/auth/github" %1></li> %>
-      <%# <% else %1> %>
-      <%#   <li><%= link_to "Log Out", logout_path %1></li> %>
-      <%#   <li ><a class="dropdown-button white-text" href="#!" data-activates="dropdown1">Your Dashboard<i class="mdi-navigation-arrow-drop-down right"></i></a></li> %>
-      <%# <% end %1> %>
+      <% if current_user.nil? %>
+        <li><%= link_to "Login with Github", "/auth/github" %></li>
+      <% else %>
+        <li><%= link_to "Log Out", logout_path %></li>
+        <li ><a class="dropdown-button white-text" href="#!" data-activates="dropdown1">Your Dashboard<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+      <% end %>
     </ul>
 
     <!-- Mobile Navbar -->
     <ul id="nav-mobile" class="side-nav cyan darken-2">
-      <%# <% if current_user.nil? %1> %>
-      <%#   <li><%= link_to "Login with Github", "/auth/github" %1></li> %>
-      <%# <% else %1> %>
-      <%#   <li><%= link_to "Log Out", logout_path %1></li> %>
-      <%# <% end %1> %>
+      <% if current_user.nil? %>
+        <li><%= link_to "Login with Github", "/auth/github" %></li>
+      <% else %>
+        <li><%= link_to "Log Out", logout_path %></li>
+      <% end %>
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>

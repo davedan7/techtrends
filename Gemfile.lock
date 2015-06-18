@@ -47,6 +47,7 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
+    c3-rails (0.4.10)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -186,6 +187,7 @@ DEPENDENCIES
   angular-rails-templates
   bower-rails
   byebug
+  c3-rails
   coffee-rails (~> 4.1.0)
   d3-rails
   figaro

@@ -3,7 +3,7 @@ app.controller('SearchController', ['$scope', 'JobSearch', function($scope, JobS
   $scope.zipcode = "80202";
   $scope.searchWords = "web developer";
   $scope.searchDescription = "";
-  $scope.dataPoints = [{key: "javascript", y: 0}, {key: "ruby", y: 0}, {key: "rails", y: 0}, {key: "node", y: 0}, {key: "angular", y: 0}, {key: "angularjs", y: 0}, {key: "tdd", y: 0}, {key: "mvc", y: 0}, {key: "jquery", y: 0}, {key: "json", y: 0}]; //ruby: 0, rails: 0, node: 0, angular: 0, angularjs: 0, tdd: 0, mvc: 0, jquery: 0, json: 0}];
+  $scope.dataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, tdd: 0, mvc: 0, jquery: 0, json: 0}
     //   {
     //   key: "Javascript",
     //   y: $scope.dataPoints.javascript
@@ -17,7 +17,7 @@ app.controller('SearchController', ['$scope', 'JobSearch', function($scope, JobS
     JobSearch.search($scope.zipcode, $scope.searchWords)
     .success(function(data){
       $scope.searchResults = phraseParse(data);
-      console.log("Working?");
+      generateChart();
     });
   };
 
@@ -25,36 +25,83 @@ app.controller('SearchController', ['$scope', 'JobSearch', function($scope, JobS
     // var wordCount = [];
     var items = data.value.items;
 
-    var megaDescriptions = []
+    // var megaDescriptions = []
     for (var i = 0, len = items.length - 1; i <= len ; i++) {
       var itemDescription = items[i].description;
       var split = itemDescription.toLowerCase()
         .replace(/\W/g, " ")
         .split(/\s+/);
-      megaDescriptions.push(split);
-      // for (var x = 0; x < split.length; x++) {
-      //   for (var y = 0; y < $scope.dataPoints.length; y++) {
-      //     if (split[x] === $scope.dataPoints[y].key) {
-      //       $scope.dataPoints[y].y ++;
-      //     }
-      //     console.log($scope.dataPoints[y].key);
-      //   }
-      //   // $scope.dataPoints[split[x]]++;
-      // }
-    }
-    var flattenedDescriptions = [].concat.apply([], megaDescriptions);
+      // megaDescriptions.push(split);
+      for (var x = 0; x < split.length; x++) {
+        $scope.dataPoints[split[x]]++;
+        // for (var y = 0; y < $scope.dataPoints.length; y++) {
 
-    for (var x = 0; x < flattenedDescriptions.length; x++) {
-      for (var y = 0; y < $scope.dataPoints.length; y++) {
-        if (flattenedDescriptions[x] === $scope.dataPoints[y].key) {
-          $scope.dataPoints[y].y ++;
-        }
-        // console.log($scope.dataPoints[y].key);
+          // if (split[x] === $scope.dataPoints[y].key) {
+          //   $scope.dataPoints[y].y ++;
+          // }
+          // console.log($scope.dataPoints);
+        // }
+        // $scope.dataPoints[split[x]]++;
       }
-      // $scope.dataPoints[split[x]]++;
     }
-    console.log(flattenedDescriptions);
+    // var flattenedDescriptions = [].concat.apply([], megaDescriptions);
+
+    // for (var x = 0; x < flattenedDescriptions.length; x++) {
+    //   for (var y = 0; y < $scope.dataPoints.length; y++) {
+    //     if (flattenedDescriptions[x] === $scope.dataPoints[y].key) {
+    //       $scope.dataPoints[y].y ++;
+    //     }
+    //     // console.log($scope.dataPoints[y].key);
+    //   }
+    //   // $scope.dataPoints[split[x]]++;
+    // }
+    // console.log(flattenedDescriptions);
   };
+
+  //new chart
+function generateChart() {
+  var chart = c3.generate({
+    data: {
+      bindto: '.chart',
+        // iris data from R
+        columns: [
+            ['data1', 30],
+            ['data2', 120],
+        ],
+        type : 'pie',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    }
+});
+
+setTimeout(function () {
+    chart.load({
+        columns: [
+            ["Javascript", $scope.dataPoints.javascript],
+            ["Ruby", $scope.dataPoints.ruby],
+            ["Rails", $scope.dataPoints.angular],
+            ["Node", $scope.dataPoints.angular],
+            // ["Angular", $scope.dataPoints.angular],
+            ["AngularJS", ($scope.dataPoints.angular + $scope.dataPoints.angular)],
+            ["TDD", $scope.dataPoints.angular],
+            ["MVC", $scope.dataPoints.angular],
+        ]
+  // $scope.dataPoints =  //ruby: 0, rails: 0, node: 0, angular: 0, angularjs: 0, tdd: 0, mvc: 0, jquery: 0, json: 0}];
+    });
+}, 1500);
+
+setTimeout(function () {
+    chart.unload({
+        ids: 'data1'
+    });
+    chart.unload({
+        ids: 'data2'
+    });
+}, 2500);
+}
+
+//new chart end
 
   // Pie Chart
   // $scope.options = {

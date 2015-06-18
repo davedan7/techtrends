@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require d3
+//= require c3
 //= require materialize-sprockets
 //= require angular
 //= require angular-rails-templates

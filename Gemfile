@@ -13,6 +13,7 @@ gem 'materialize-sass'
 gem 'angular-rails-templates'
 gem 'bower-rails'
 gem 'd3-rails'
+gem "c3-rails"
 gem 'pry'
 gem 'omniauth-github'
 gem 'figaro'
