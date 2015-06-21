@@ -6,17 +6,25 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s6">
-            <input ng-model="searchWords" id="words" type="text" class="validate">
-            <label for="words">Search Word</label>
-          </div>
-          <div class="input-field col s6">
             <input ng-model="zipcode" id="zip" type="text" class="validate">
-            <label for="zip">ZipCode</label>
+            <label for="zip">Insert Your Zipcode</label>
           </div>
         </div>
       </form>
       <button type="button" ng-click="submitSearch()">Submit</button>
-      <button type="button" ng-click="searchMeetup()">Meetup</button>
+      <!-- <button type="button" ng-click="searchMeetup()">Meetup</button> -->
+    </div>
+
+    <div ng-show="visabilityState" class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -28,5 +36,6 @@
     </div>
   </div>
   <div id="chart"></div>
+  <!-- <div id="chart1"></div> -->
   <div id="nvd3"><nvd3 options="options" data="dataPoints"></nvd3></div>
 </div>
