@@ -69,6 +69,7 @@ GEM
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
+    hurley (0.1)
     i18n (0.7.0)
     jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
@@ -197,6 +198,7 @@ DEPENDENCIES
   d3-rails
   execjs
   figaro
+  hurley
   jbuilder (~> 2.0)
   jquery-rails
   materialize-sass

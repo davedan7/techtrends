@@ -15,16 +15,18 @@ gem 'angular-rails-templates'
 gem 'angularjs-rails'
 gem 'd3-rails'
 gem "c3-rails"
-gem 'pry'
 gem 'omniauth-github'
 gem 'figaro'
-gem 'rails_12factor', group: :production
 gem 'execjs'
 gem 'therubyracer'
+gem 'hurley'
+
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
 
+  gem 'pry'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
