@@ -1,19 +1,3 @@
-// var meetupSearchResults = [];
-
-// var callbackformeetup  = function (data) {
-//   data.data.forEach(logElements);
-// }; 
-
-
-// function logElements (element, index, array) {
-//   meetupSearchResults.push(element);
-//   $('#meetupResults').append("<li>Name: " + element.name + "</li>");
-//   console.log(element.name);
-//   console.log(element.link);
-// }
-
-
-
 app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetupApiKey', function($scope, JobSearch, MeetupSearch, meetupApiKey){
 
   $scope.zipcode               = "80202";
@@ -21,13 +5,12 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
   $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, java: 0};
   $scope.descriptionDataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0};
-  // $scope.meetupSearchResults = meetupSearchResults;
-  $scope.zipSearch = false;
-  $scope.languageBreakdown = false;
 
 // Job Search
 
 // .done => toggle the display of loaidng bar
+  $scope.zipSearch = false;
+
   $scope.submitSearch = function() {     // Is there a way to refactor out the chain of promises?
     for (var i = 0; i < $scope.developerSearchWords.length; i++) {
       $scope.zipSearch = true;
@@ -38,7 +21,6 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
       }).catch(function(err) {
         console.log("Page didn't load correctly");
       }).finally(function(){
-        // console.log($scope.rawData);
         generateTitleChart();
       });
     }
@@ -75,6 +57,9 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     }
   };
 
+
+  $scope.languageBreakdown = false;
+
   function showLanguageBreakdown() {
     $scope.languageBreakdown = true;
   }
@@ -85,6 +70,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     .success(function(data){
       // console.log(data);
       console.log('successful response: ', data);
+      $scope.meetupEvents = data.data;
     })
     .catch(function(err) {
       console.log("Page didn't load correctly");
