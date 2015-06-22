@@ -5,7 +5,8 @@
     <li><%= link_to "Login with Github", "/auth/github" %></li>
   <% else %>
     <li><%= link_to "Log Out", logout_path, class: 'black-text'%></li>
-    <li><%= link_to "Searches", user_path(current_user), class: 'black-text' %></li>
+    <li><%= link_to "Network", user_path(current_user), class: 'black-text' %></li>
+    <li><%= link_to "Compare", compare_path, class: 'black-text' %></li>
   <% end %>
   <li class="divider"></li>
 </ul>

@@ -1,20 +1,4 @@
-// var meetupSearchResults = [];
-
-// var callbackformeetup  = function (data) {
-//   data.data.forEach(logElements);
-// }; 
-
-
-// function logElements (element, index, array) {
-//   meetupSearchResults.push(element);
-//   $('#meetupResults').append("<li>Name: " + element.name + "</li>");
-//   console.log(element.name);
-//   console.log(element.link);
-// }
-
-
-
-app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetupApiKey', function($scope, JobSearch, MeetupSearch, meetupApiKey){
+app.controller('CompareController', ['$scope', function($scope) {
 
   $scope.zipcode               = "80202";
   $scope.developerSearchWords  = [ 'web+developer', "front-end", "front+end", "back-end", "engineer", "full+stack", "developer"];
@@ -27,7 +11,6 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
 // Job Search
 
-// .done => toggle the display of loaidng bar
   $scope.submitSearch = function() {     // Is there a way to refactor out the chain of promises?
     for (var i = 0; i < $scope.developerSearchWords.length; i++) {
       $scope.zipSearch = true;
@@ -84,10 +67,10 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     MeetupSearch.search($scope.zipcode,  meetupApiKey, searchWord)
     .success(function(data){
       // console.log(data);
-      console.log('successful response: ', data);
+      console.log(data);
     })
     .catch(function(err) {
-      console.log("Page didn't load correctly");
+        console.log("Page didn't load correctly");
     });
   };
 
@@ -143,7 +126,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
 
   var generateDescriptionChart = function(language) {
-
+    
     showLanguageBreakdown();
 
     var datasets = {
@@ -191,4 +174,3 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
   };
 
 }]);
-
