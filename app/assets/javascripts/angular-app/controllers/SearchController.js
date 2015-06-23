@@ -1,7 +1,7 @@
 app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetupApiKey', function($scope, JobSearch, MeetupSearch, meetupApiKey){
 
   $scope.zipcode               = "80202";
-  $scope.developerSearchWords  = [ 'web+developer', "front-end", "front+end", "back-end", "engineer", "full+stack", "developer"];
+  $scope.developerSearchWords  = ['web+developer', "front-end", "front+end", "back-end", "engineer", "full+stack", "developer"];
 
   $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, java: 0};
   $scope.descriptionDataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0};
@@ -57,13 +57,6 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     }
   };
 
-
-  $scope.languageBreakdown = false;
-
-  function showLanguageBreakdown() {
-    $scope.languageBreakdown = true;
-  }
-
 // Meetup Search
   var searchMeetup = function(searchWord) {
     MeetupSearch.search($scope.zipcode,  meetupApiKey, searchWord)
@@ -77,6 +70,9 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     });
   };
 
+  // var RedditSearch = function(searchWord) {
+  //   RedditSearch.seach
+  // };
 // Title  chart
  
   var generateTitleChart = function() {
@@ -109,9 +105,9 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
         columns: [
           ["Javascript",  $scope.titleDataPoints.javascript + $scope.titleDataPoints.angularjs + $scope.titleDataPoints.angular],
           ["Ruby",        $scope.titleDataPoints.ruby],
-          ["Python",       $scope.titleDataPoints.python],
-          ["Go",        $scope.titleDataPoints.go],
-          ["PHP",        $scope.titleDataPoints.php],
+          ["Python",      $scope.titleDataPoints.python],
+          ["Go",          $scope.titleDataPoints.go],
+          ["PHP",         $scope.titleDataPoints.php],
           ["Java",        $scope.titleDataPoints.java],
         ]
       });
@@ -130,8 +126,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
   var generateDescriptionChart = function(language) {
 
-    showLanguageBreakdown();
-
+    
     var datasets = {
       Javascript: 
         [
@@ -150,17 +145,21 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
             ['data1', 30],
             ['data2', 120],
           ],
-          type : 'pie',
+          type : 'donut',
           // onclick: function (d, i) { console.log("onclick", d, i); },
           // onclick: function (d, i) { console.log(d.id, i); },
           onclick: function (d, i) { searchMeetup(d.id); },
           // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
           // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        },
+        donut: {
+          title: $scope.detailsFor + " Breakdown"
         }
       });
 
   // $scope.descriptionDataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0};
     setTimeout(function () {
+    chart.transform('donut');
       chart.load({
         columns: datasets[language]
       });

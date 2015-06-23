@@ -25,7 +25,10 @@ gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
-
+  gem 'rspec-rails'
+  gem 'guard'
+  # gem 'launchy'
+  gem 'jasmine'
   gem 'pry'
   gem 'web-console', '~> 2.0'
   gem 'spring'

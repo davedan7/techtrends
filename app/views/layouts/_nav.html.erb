@@ -1,36 +1,54 @@
 
 <!-- dropdown -->
-<ul id="dropdown1" class="dropdown-content nav-item">
-  <% if current_user.nil? %>
-    <li><%= link_to "Login with Github", "/auth/github" %></li>
-  <% else %>
-    <li><%= link_to "Log Out", logout_path, class: 'black-text'%></li>
-    <li><%= link_to "Network", user_path(current_user), class: 'black-text' %></li>
-    <li><%= link_to "Compare", compare_path, class: 'black-text' %></li>
-  <% end %>
+<!-- <ul id="dropdown1" class="dropdown-content nav-item">
   <li class="divider"></li>
 </ul>
+ -->
 
+  <!-- ALT NAV - Doesn't work with Angular -->
+<!--  <div class="main" ng-controller="SearchController">
+<header>
+  <nav class="cyan lighten-1">
+    <div class="nav-wrapper">
+      <a href="/" class="left">TechTrendy</a>
+      <a href="#" data-activates="mobile-nav" class="right button-collapse"><i class="mdi-navigation-more-vert"></i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a ng-click="submitSearch()" class="white-text">Submit New Search</a></li>
+        <li><%#= link_to "Find", search_path, class: 'white-text' %></li>
+        <li><%#= link_to "Compare", compare_path, class: 'white-text' %></li>
+      </ul>
+      <div class="right">
+        <form>
+          <div class="input-field">
+            <input ng-model="zipcode" ng-model="zipcode" ng-model="zipcode" type="search" id="search-field" class="field" required maxlength="">
+            <label for="search-field"><i class="mdi-action-search"></i></label>
+            <i class="mdi-navigation-close close"></i>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <ul class="side-nav" id="mobile-nav">
+    <li><%#= link_to "Network", search_path, class: 'white-text' %></li>
+    <li><%#= link_to "Compare", compare_path, class: 'white-text' %></li>
+  </ul>
+</header> 
+ -->
 <nav class="teal darken-2" role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" href="/" class="brand-logo white-text text-lighten-3" id="logo">Logo</a>
+    <a id="logo-container" href="/" class="brand-logo white-text text-lighten-3" id="logo">TechTrendy</a>
     <ul class="right hide-on-med-and-down">
-      <% if current_user.nil? %>
-        <li><%= link_to "Login with Github", "/auth/github" %></li>
-      <% else %>
-        <li><%= link_to "Log Out", logout_path %></li>
-        <li ><a class="dropdown-button white-text" href="#!" data-activates="dropdown1">Your Dashboard<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-      <% end %>
+      <!-- <li ><a class="dropdown-button white-text" href="#!" data-activates="dropdown1"><i class="mdi-navigation-arrow-drop-down right"></i></a></li> -->
+      <li><%= link_to "Search an Area", search_path, class: 'white-text' %></li>
+      <li><%= link_to "Compare", compare_path, class: 'white-text' %></li>
     </ul>
 
     <!-- Mobile Navbar -->
     <ul id="nav-mobile" class="side-nav cyan darken-2">
-      <% if current_user.nil? %>
-        <li><%= link_to "Login with Github", "/auth/github" %></li>
-      <% else %>
-        <li><%= link_to "Log Out", logout_path %></li>
-      <% end %>
+      <li><%= link_to "Network", search_path, class: 'white-text' %></li>
+      <li><%= link_to "Compare", compare_path, class: 'white-text' %></li>
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
+</div>

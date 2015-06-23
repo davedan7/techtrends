@@ -6,57 +6,31 @@
       <form class="col s3 offset-s4 center">
         <div class="row">
           <div class="input-field">
-            <input ng-model="zipcode" id="zip" type="text" class="validate center-align">
-            <label for="zip">Insert Your Zipcode</label>
-            <button type="button" ng-click="submitSearch()" class="waves-effect waves-light btn">Submit</button>
+            <input ng-model="zipcode1" id="zip1" type="text" class="validate center-align">
+            <label for="zip1">Insert First Zipcode</label>
           </div>
+        </div>
+      </form>
+      
+      <form class="col s3 offset-s4 center">
+        <div class="row">
+          <div class="input-field">
+            <input ng-model="zipcode2" id="zip2" type="text" class="validate center-align">
+            <label for="zip2">Insert Second Zipcode</label>
+          </div>
+          <button type="button" ng-click="submitCompareSearch()" class="waves-effect waves-light btn">Submit</button>
         </div>
       </form>
     </div>
 
     <div ng-show="zipSearch" class="center">
-      <h3> Search Results for {{ zipcode }}</h3>
-    </div>
-
-    <div ng-show="languageBreakdown" class="center">
-      <h4> {{ detailsFor }} Language Breakdown</h4>
+      <h3> Search Results for {{ zipcode1 }} and {{ zipcode2}}</h3>
     </div>
 
 
-<!--     <div ng-show="visabilityState" class="preloader-wrapper big active">
-      <div class="spinner-layer spinner-blue-only">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-    </div>
- -->
   </div>
   <div id="chart"></div>
-  <!-- <div id="chart1"></div> -->
-  <div id="nvd3"><nvd3 options="options" data="dataPoints"></nvd3></div>
+  <!-- <div id="chart2"></div> -->
 
-    <ul id="meetupResults">
-    </ul>
 
-<!--     <div class="row">
-      <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">Card Title</span>
-            <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href='#'>This is a link</a>
-            </div>
-          </div>
-        </div>
-      </div>
- -->
 </div>
