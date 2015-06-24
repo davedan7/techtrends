@@ -11,6 +11,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
   $scope.zipSearch = false;
 
   $scope.submitSearch = function() {     // Is there a way to refactor out the chain of promises?
+    $scope.searchField = false;
     for (var i = 0; i < $scope.developerSearchWords.length; i++) {
       $scope.zipSearch = true;
       JobSearch.search($scope.zipcode, $scope.developerSearchWords[i])  // Perform query for each title search word
@@ -64,6 +65,9 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     }
   };
 
+  function removeTags (string) {
+    return string.replace(/<\/?[^>]+(>|$)/g, "");
+  }
 // Meetup Search
   var searchMeetup = function(searchWord) {
     MeetupSearch.search($scope.zipcode,  meetupApiKey, searchWord)

@@ -1,4 +1,5 @@
 <div class="main" ng-controller="SearchController">
+
   <div ng-show="landingPage" id="index-banner" class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -18,15 +19,16 @@
   </div>
   <br>
 
-  <div class="container">
+  <div class="container" id="search-field">
     <div class="row" ng-show="searchField">
       <form class="center col s4 offset-s4">
         <input ng-model="zipcode" type="text" class="center-align" placeholder="Insert Your Zipcode" required>
-        <a ng-click="submitSearch()" class="waves-effect waves-light btn" id="search-button">Submit</a>
+        <a ng-click="submitSearch()" class="waves-effect waves-light btn" id="search-button" onclick="Materialize.toast('Click a Lanauge for details!', 3000, 'rounded')">Submit</a>
+        <p class="center-align"><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Put in your zipcode and hit submit to see current language trends.">Need help?</a></p>
       </form>
     </div>
     <div ng-show="zipSearch" class="center">
-      <h3> Jobs by Title for {{ zipcode }}</h3>
+      <h5> Current developer jobs in {{ zipcode }}</h5>
     </div>
   </div>
 
@@ -35,12 +37,12 @@
   <ul id="meetupResults">
   </ul>
 
-  <div class="row" ng-repeat="meetup in meetupEvents">
-    <div class="col s12 m6">
+  <div class="row">
+    <div class="col s6 offset-s3" ng-repeat="meetup in meetupEvents">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">{{meetup.name}}</span>
-          <p>{{meetup.description}}</p>
+          <p>{{meetup.description | stripHtmlTags }}</p>
         </div>
         <div class="card-action">
           <a href="{{meetup.link}}">Visit {{meetup.name}}</a>
@@ -50,45 +52,67 @@
   </div>
 
 
-  <div class="container">
+  <div ng-show="landingPage" class="container">
     <div class="section">
 
       <!--   Icon Section   -->
-      <ul id="staggered-test">
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-grey-text"><i class="mdi-action-search"></i></h2>
+            <h5 class="center black-text text-darken-4">See Trends</h5>
 
-        <li class="homeInfo">
-          <div class="row">
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center blue-grey-text"><i class="mdi-action-search"></i></h2>
-                <h5 class="center black-text text-darken-4">See Trends</h5>
-
-                <p class="light">Enter a keyword or twitter handle and get a fast summary of what people are saying.</p> </div>
-            </div>
-
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center blue-grey-text"><i class="mdi-content-content-paste"></i></h2>
-                <h5 class="center black-text text-darken-4">Analyze Postings</h5>
-
-                <p class="light">Utilize Natural Language Processing to analyze and rate an overall sentiment for your searches</p>
-              </div>
-            </div>
-
-            <div class="col s12 m4">
-              <div class="icon-block">
-                <h2 class="center blue-grey-text"><i class="mdi-action-trending-up"></i></h2>
-                <h5 class="center black-text text-darken-4">Learn</h5>
-
-                <p class="center light">Schedule an automated email to track how a saved search is trending over time.</p>
-              </div>
-            </div>
+            <p class="light">Enter a keyword or twitter handle and get a fast summary of what people are saying.</p> 
           </div>
+        </div>
 
-        </li>
-        </ol>
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-grey-text"><i class="mdi-content-content-paste"></i></h2>
+            <h5 class="center black-text text-darken-4">Analyze Postings</h5>
+
+            <p class="light">Utilize Natural Language Processing to analyze and rate an overall sentiment for your searches</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-grey-text"><i class="mdi-action-trending-up"></i></h2>
+            <h5 class="center black-text text-darken-4">Learn</h5>
+
+            <p class="center light">Schedule an automated email to track how a saved search is trending over time.</p>
+          </div>
+        </div>
+      </div>
+
 
     </div>
   </div>
+
+
+  <footer ng-show="landingPage" class="teal darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="yellow-text text-lighten-1">About Me</h5>
+          <p class="light white-text">I am a student at the Turing School of Software and Design, a seven-month immersive web-development training program focusing on full-stack Ruby and Javascript.</p>
+        </div>
+
+        <div class="col l6 s12">
+          <h5 class="yellow-text text-lighten-3">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="https://github.com/davedan7">Github</a></li>
+            <li><a class="white-text" href="https://www.linkedin.com/in/davidjdaniel">LinkedIn</a></li>
+            <li><a class="white-text" href="#">Email</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright teal darken-4">
+      <div class="container">
+        Powered by <a class="orange-text text-lighten-4" href="http://www.turing.io">Turing</a>
+      </div>
+    </div>
+  </footer>
 
 </div>
