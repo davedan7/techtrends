@@ -8,7 +8,6 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
 // Job Search
 
-// .done => toggle the display of loaidng bar
   $scope.zipSearch = false;
 
   $scope.submitSearch = function() {     // Is there a way to refactor out the chain of promises?
@@ -26,6 +25,14 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     }
   };
 
+
+  $scope.landingPage = true;   // Show the intro page
+  $scope.searchField = false;  // hide the zip search field
+
+  $scope.hideIntroPage = function() {  // Hide landing page
+    $scope.landingPage = false;
+    $scope.searchField = true;
+  };
 
   var descriptionParse = function(data) {   // Occurrance of keywords in job descriptions
     var items = data.value.items;
