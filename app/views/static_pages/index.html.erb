@@ -26,7 +26,7 @@
           <h5 class="header col s12 landing-quote white-text text-darken-3 thin">A data visualization aid for web developers looking to network.</h5>
         </div>
         <div class="row center">
-          <a ng-click="hideIntroPage()" id="download-button" class="btn-large waves-effect waves-light yellow lighten-2 black-text">Get Started</a>
+          <a href="" ng-click="hideIntroPage()" id="download-button" class="btn-large waves-effect waves-light yellow lighten-2 black-text">Get Started</a>
         </div>
         <br><br>
 
@@ -41,7 +41,7 @@
     <div class="row" ng-show="searchField">
       <form class="center col s4 offset-s4">
         <input ng-model="zipcode" type="text" class="center-align" placeholder="Insert Your Zip Code" required>
-        <a ng-click="submitSearch()" class="waves-effect waves-light btn z-depth-2 yellow darken-1 black-text" id="search-button" onclick="Materialize.toast('Click a language for skill breakdown!', 3000)">Submit</a>
+        <a href="" ng-click="submitSearch()" class="waves-effect waves-light btn z-depth-2 yellow darken-1 black-text" id="search-button" onclick="Materialize.toast('Click a language for skill breakdown!', 3000)">Submit</a>
         <p class="center-align"><a class="tooltipped black-text" data-position="bottom" data-delay="50" data-tooltip="Put in your zip code and hit submit to see current language trends.">Need help?</a></p>
       </form>
     </div>
@@ -63,7 +63,7 @@
           <p class="thin">{{meetup.description | stripHtmlTags }}</p>
         </div>
         <div class="card-action">
-          <a class="orange-text text-lighten-3" href="{{meetup.link}}">Check them out on Meetup</a>
+          <a href="" class="orange-text text-lighten-3" href="{{meetup.link}}">Check them out on Meetup</a>
         </div>
       </div>
     </div>

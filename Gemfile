@@ -27,9 +27,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard'
   gem 'capybara' 
-  gem 'selenium-webdriver'
-  # gem "capybara-webkit"
-  # gem 'launchy'
+  # gem 'selenium-webdriver'
+  gem "capybara-webkit"
+  gem 'launchy'
   gem 'jasmine'
   gem 'jasmine-rails'
   gem 'poltergeist'
