@@ -11,7 +11,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'materialize-sass'
 gem 'angular-rails-templates'
-# gem 'bower-rails'
 gem 'angularjs-rails'
 gem 'd3-rails'
 gem "c3-rails"
@@ -27,8 +26,13 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'guard'
+  gem 'capybara' 
+  gem 'selenium-webdriver'
+  # gem "capybara-webkit"
   # gem 'launchy'
   gem 'jasmine'
+  gem 'jasmine-rails'
+  gem 'poltergeist'
   gem 'pry'
   gem 'web-console', '~> 2.0'
   gem 'spring'

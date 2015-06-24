@@ -48,8 +48,17 @@ GEM
     byebug (5.0.0)
       columnize (= 0.9.0)
     c3-rails (0.4.10)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    childprocess (0.5.6)
+      ffi (~> 1.0, >= 1.0.11)
+    cliver (0.3.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -92,6 +101,11 @@ GEM
       rack (>= 1.2.1)
       rake
     jasmine-core (2.3.4)
+    jasmine-rails (0.10.8)
+      jasmine-core (>= 1.3, < 3.0)
+      phantomjs (>= 1.9)
+      railties (>= 3.2.0)
+      sprockets-rails
     jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -143,6 +157,11 @@ GEM
       omniauth (~> 1.2)
     pg (0.18.2)
     phantomjs (1.9.8.0)
+    poltergeist (1.6.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -202,6 +221,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    rubyzip (1.1.7)
     sass (3.4.14)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -212,6 +232,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selenium-webdriver (2.46.2)
+      childprocess (~> 0.5)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     shellany (0.0.1)
     slop (3.6.0)
     spring (1.3.6)
@@ -239,6 +264,12 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    websocket (1.2.2)
+    websocket-driver (0.5.4)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -248,6 +279,7 @@ DEPENDENCIES
   angularjs-rails
   byebug
   c3-rails
+  capybara
   coffee-rails (~> 4.1.0)
   d3-rails
   execjs
@@ -255,17 +287,20 @@ DEPENDENCIES
   guard
   hurley
   jasmine
+  jasmine-rails
   jbuilder (~> 2.0)
   jquery-rails
   materialize-sass
   omniauth-github
   pg
+  poltergeist
   pry
   rails (= 4.2.1)
   rails_12factor
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  selenium-webdriver
   spring
   therubyracer
   uglifier (>= 1.3.0)

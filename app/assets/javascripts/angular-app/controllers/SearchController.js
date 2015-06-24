@@ -1,16 +1,16 @@
 app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetupApiKey', function($scope, JobSearch, MeetupSearch, meetupApiKey){
 
   // $scope.zipcode;               = "80202";
-  $scope.developerSearchWords  = ['web+developer', "front-end", "front+end", "back-end", "engineer", "full+stack", "developer"];
+  $scope.developerSearchWords  = ["front-end", "front+end", "back-end","back+end", "engineer", "full+stack", "developer"];
 
-  $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, java: 0};
-  $scope.descriptionDataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0};
+  $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, scala: 0, clojure: 0};
+  $scope.descriptionDataPoints = {javascript: 0, ruby: 0, rails: 0, django: 0, flask: 0, pyramid: 0, lotus: 0, sinatra: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0, scalatra: 0, lift: 0, akaa: 0, compojure: 0, pedestal: 0, hoplon: 0, ring: 0, playnice: 0 };
 
 // Job Search
 
   $scope.zipSearch = false;
 
-  $scope.submitSearch = function() {     // Is there a way to refactor out the chain of promises?
+  $scope.submitSearch = function() { // Is there a way to refactor out the chain of promises?
     $scope.searchField = false;
     for (var i = 0; i < $scope.developerSearchWords.length; i++) {
       $scope.zipSearch = true;
@@ -60,7 +60,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
     for (var i = 0, len = items.length - 1; i <= len ; i++) {
       var itemTitle = items[i].title;  // Grab Descriptions
-      var split = itemTitle.toLowerCase()    // Normalize Them
+      var split     = itemTitle.toLowerCase()    // Normalize Them
       .replace(/\W/g, " ")
       .split(/\s+/);
 
@@ -96,24 +96,19 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     var chart = c3.generate({
       data: {
         bindto: '.chart',
-          // iris data from R
-          columns: [
-            ['data1', 30],
-            ['data2', 120],
-          ],
-          type : 'pie',
-          // onclick: function (d, i) { console.log("onclick", d, i); },
-          // onclick: function (d, i) { console.log(d.id); },
-          onclick: function (d) { 
-            // $scope.languageBreakdown = true;
-            // showLanguageBreakdown();
-            $scope.detailsFor = d.id;
-            generateDescriptionChart(d.id);
-          },
-          // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-          // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-        }
-      });
+        columns: 
+        [
+          ['data1', 30],
+          ['data2', 120],
+        ],
+
+        type : 'pie',
+        onclick: function (d) { 
+          $scope.detailsFor = d.id;
+          generateDescriptionChart(d.id);
+        },
+      }
+    });
 
   // $scope.titleDataPoints = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, react: 0, reactjs: 0};
     setTimeout(function () {
@@ -124,7 +119,8 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
           ["Python",      $scope.titleDataPoints.python],
           ["Go",          $scope.titleDataPoints.go],
           ["PHP",         $scope.titleDataPoints.php],
-          ["Java",        $scope.titleDataPoints.java],
+          ["Scala",       $scope.titleDataPoints.scala],
+          ["Clojure",     $scope.titleDataPoints.clojure],
         ]
       });
     }, 1500);
@@ -152,32 +148,49 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
           ["Backbone",    $scope.descriptionDataPoints.backbone],
         ],
       Ruby:
-      [
-        ["Rails", $scope.descriptionDataPoints.rails]
-      ]
+        [
+          ["Rails",   $scope.descriptionDataPoints.rails],
+          ["Lotus",   $scope.descriptionDataPoints.lotus],
+          ["Sinatra", $scope.descriptionDataPoints.sinatra],
+          ["Volt",    $scope.descriptionDataPoints.volt],
+        ],
+      Python:
+        [
+          ["Django",  $scope.descriptionDataPoints.django],
+          ["Flask",   $scope.descriptionDataPoints.flask],
+          ["Pyramid", $scope.descriptionDataPoints.pyramid],
+        ],
+      Scala:
+        [
+          ["Scalatra", $scope.descriptionDataPoints.scalatra],
+          ["Lift",     $scope.descriptionDataPoints.lift],
+          ["Akaa",     $scope.descriptionDataPoints.akaa],
+        ],
+      Clojure:
+        [
+          ["Compojure", $scope.descriptionDataPoints.compojure],
+          ["Pedestal",  $scope.descriptionDataPoints.pedestal],
+          ["Hoplon",    $scope.descriptionDataPoints.hoplon],
+          ["Ring",      $scope.descriptionDataPoints.ring],
+          ["Playnice",  $scope.descriptionDataPoints.playnice],
+        ],
     };
 
     var chart = c3.generate({
       data: {
         bindto: '.chart',
-          // iris data from R
           columns: [
             ['data1', 30],
             ['data2', 120],
           ],
           type : 'donut',
-          // onclick: function (d, i) { console.log("onclick", d, i); },
-          // onclick: function (d, i) { console.log(d.id, i); },
           onclick: function (d, i) { searchMeetup(d.id); },
-          // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-          // onmouseout: function (d, i) { console.log("onmouseout", d, i); }
         },
         donut: {
           title: $scope.detailsFor + " Breakdown"
         }
       });
 
-  // $scope.descriptionDataPoints = {javascript: 0, ruby: 0, rails: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0};
     setTimeout(function () {
     chart.transform('donut');
       chart.load({

@@ -1,16 +1,16 @@
 <div class="main" ng-controller="SearchController">
 
   <!-- Navbar -->
-  <nav class="black darken-1" role="navigation">
+  <nav class="grey darken-4 z-depth-2" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="/" class="brand-logo yellow-text text-lighten-3" id="logo">TechTrendy</a>
+      <a id="logo-container" href="/" class="brand-logo yellow-text text-lighten-3 thin" id="logo">FutureProof</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="" ng-click="resetSearch()" class="yellow-text text-lighten-3">New Search</a></li>
+        <li><a href="" ng-click="resetSearch()" class="yellow-text text-lighten-3 thin">New Search</a></li>
       </ul>
 
       <!-- Mobile Navbar -->
       <ul id="nav-mobile" class="side-nav cyan darken-2">
-        <li><%= link_to "Network", search_path, class: 'white-text' %></li>
+        <li><a href="" ng-click="resetSearch()" class="yellow-text text-lighten-3 thin">New Search</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
@@ -23,16 +23,16 @@
         <br><br>
         <!-- <h1 class="header center yellow-text text-lighten-2">TechTrends</h1> -->
         <div class="row center">
-          <h5 class="header col s12 landing-quote yellow-text text-lighten-3">A data visualization aid for web developers looking to network.</h5>
+          <h5 class="header col s12 landing-quote white-text text-darken-3 thin">A data visualization aid for web developers looking to network.</h5>
         </div>
         <div class="row center">
-          <a ng-click="hideIntroPage()" id="download-button" class="btn-large waves-effect waves-light teal darken-2">Get Started</a>
+          <a ng-click="hideIntroPage()" id="download-button" class="btn-large waves-effect waves-light yellow lighten-2 black-text">Get Started</a>
         </div>
         <br><br>
 
       </div>
     </div>
-    <div class="parallax"><%= image_tag("code.jpg", alt: "Unsplashed background img 1") %></div>
+    <div class="parallax"><%= image_tag("clean-code.jpg", alt: "Unsplashed background img 1") %></div>
   </div>
   <br>
 
@@ -40,13 +40,13 @@
   <div class="container" id="search-field">
     <div class="row" ng-show="searchField">
       <form class="center col s4 offset-s4">
-        <input ng-model="zipcode" type="text" class="center-align" placeholder="Insert Your Zipcode" required>
-        <a ng-click="submitSearch()" class="waves-effect waves-light btn" id="search-button" onclick="Materialize.toast('Click a language for skill breakdown!', 3000)">Submit</a>
-        <p class="center-align"><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Put in your zipcode and hit submit to see current language trends.">Need help?</a></p>
+        <input ng-model="zipcode" type="text" class="center-align" placeholder="Insert Your Zip Code" required>
+        <a ng-click="submitSearch()" class="waves-effect waves-light btn z-depth-2 yellow darken-1 black-text" id="search-button" onclick="Materialize.toast('Click a language for skill breakdown!', 3000)">Submit</a>
+        <p class="center-align"><a class="tooltipped black-text" data-position="bottom" data-delay="50" data-tooltip="Put in your zip code and hit submit to see current language trends.">Need help?</a></p>
       </form>
     </div>
-    <div ng-show="zipSearch" class="center">
-      <h5> Current developer jobs in {{ zipcode }}</h5>
+    <div ng-show="zipSearch" class="center row">
+      <h5 class="medium job-chart">Developer jobs in {{ zipcode }}</h5>
     </div>
   </div>
 
@@ -54,18 +54,16 @@
   <div id="chart"></div>
 
   <!-- Meetup results -->
-  <ul id="meetupResults">
-  </ul>
 
   <div class="row">
     <div class="col s8 offset-s2" ng-repeat="meetup in meetupEvents">
-      <div class="card blue-grey darken-1 z-depth-3">
-        <div class="card-content white-text">
-          <span class="card-title">{{meetup.name}}</span>
-          <p>{{meetup.description | stripHtmlTags }}</p>
+      <div class="card grey darken-2 z-depth-3">
+        <div class="card-content white-text thin">
+          <span class="card-title orange-text text-lighten-2 thin">{{meetup.name}}</span>
+          <p class="thin">{{meetup.description | stripHtmlTags }}</p>
         </div>
         <div class="card-action">
-          <a href="{{meetup.link}}">Visit {{meetup.name}}</a>
+          <a class="orange-text text-lighten-3" href="{{meetup.link}}">Check them out on Meetup</a>
         </div>
       </div>
     </div>
@@ -80,28 +78,28 @@
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center blue-grey-text"><i class="mdi-action-search"></i></h2>
-            <h5 class="center black-text text-darken-4">See Trends</h5>
+            <h2 class="center grey-text"><i class="mdi-action-trending-up"></i></h2>
+            <h5 class="center black-text text-darken-4">See Current Job Trends</h5>
 
-            <p class="light">Enter a keyword or twitter handle and get a fast summary of what people are saying.</p> 
+            <p class="light">Enter a zipcode to see visual representation of the occurrance of popular languages on six popular job-search engines.</p> 
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center blue-grey-text"><i class="mdi-content-content-paste"></i></h2>
-            <h5 class="center black-text text-darken-4">Analyze Postings</h5>
+            <h2 class="center grey-text"><i class="mdi-action-search"></i></h2>
+            <h5 class="center black-text text-darken-4">Analyze Popular Skill Sets</h5>
 
-            <p class="light">Utilize Natural Language Processing to analyze and rate an overall sentiment for your searches</p>
+            <p class="light">Click on a language, and see the occurrance of related skills and frameworks contained within a posts' job-description. </p>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center blue-grey-text"><i class="mdi-action-trending-up"></i></h2>
-            <h5 class="center black-text text-darken-4">Learn</h5>
+            <h2 class="center grey-text"><i class="mdi-action-perm-identity"></i></h2>
+            <h5 class="center black-text text-darken-4">Network for the Future</h5>
 
-            <p class="center light">Schedule an automated email to track how a saved search is trending over time.</p>
+            <p class="center light">Click again, and see local Meetups related to a skill set, sorted by relevance and number of active members.</p>
           </div>
         </div>
       </div>
@@ -110,29 +108,27 @@
     </div>
   </div>
 
-
   <!-- footer -->
-  <footer ng-show="landingPage" class="blue-grey darken-1">
+  <footer ng-show="landingPage" class="grey darken-3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="yellow-text text-lighten-1">About Me</h5>
+          <h5 class="yellow-text text-lighten-3 thin">About Me</h5>
           <p class="light white-text">I am a student at the Turing School of Software and Design, a seven-month immersive web-development training program focusing on full-stack Ruby and Javascript.</p>
         </div>
 
         <div class="col l6 s12">
-          <h5 class="yellow-text text-lighten-3">Connect</h5>
+          <h5 class="yellow-text text-lighten-3 thin">Connect</h5>
           <ul>
             <li><a class="white-text" href="https://github.com/davedan7">Github</a></li>
             <li><a class="white-text" href="https://www.linkedin.com/in/davidjdaniel">LinkedIn</a></li>
-            <li><a class="white-text" href="#">Email</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="footer-copyright blue-grey darken-2">
+    <div class="footer-copyright grey darken-2">
       <div class="container">
-        Powered by <a class="orange-text text-lighten-4" href="http://www.turing.io">Turing</a>
+        Powered by <a class="orange-text text-lighten-3" href="http://www.turing.io">Turing</a>
       </div>
     </div>
   </footer>
