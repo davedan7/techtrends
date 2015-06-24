@@ -1,12 +1,29 @@
 <div class="main" ng-controller="SearchController">
 
+  <!-- Navbar -->
+  <nav class="black darken-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo yellow-text text-lighten-3" id="logo">TechTrendy</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="" ng-click="resetSearch()" class="yellow-text text-lighten-3">New Search</a></li>
+      </ul>
+
+      <!-- Mobile Navbar -->
+      <ul id="nav-mobile" class="side-nav cyan darken-2">
+        <li><%= link_to "Network", search_path, class: 'white-text' %></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
+  </nav>
+
+  <!-- Intro Page -->
   <div ng-show="landingPage" id="index-banner" class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
         <!-- <h1 class="header center yellow-text text-lighten-2">TechTrends</h1> -->
         <div class="row center">
-          <h5 class="header col s12 landing-quote white-text">A data visualization aid for web developers looking to network.</h5>
+          <h5 class="header col s12 landing-quote yellow-text text-lighten-3">A data visualization aid for web developers looking to network.</h5>
         </div>
         <div class="row center">
           <a ng-click="hideIntroPage()" id="download-button" class="btn-large waves-effect waves-light teal darken-2">Get Started</a>
@@ -15,15 +32,16 @@
 
       </div>
     </div>
-    <div class="parallax"><%= image_tag("background_code.jpg", alt: "Unsplashed background img 1") %></div>
+    <div class="parallax"><%= image_tag("code.jpg", alt: "Unsplashed background img 1") %></div>
   </div>
   <br>
 
+  <!-- Search Field -->
   <div class="container" id="search-field">
     <div class="row" ng-show="searchField">
       <form class="center col s4 offset-s4">
         <input ng-model="zipcode" type="text" class="center-align" placeholder="Insert Your Zipcode" required>
-        <a ng-click="submitSearch()" class="waves-effect waves-light btn" id="search-button" onclick="Materialize.toast('Click a Lanauge for details!', 3000, 'rounded')">Submit</a>
+        <a ng-click="submitSearch()" class="waves-effect waves-light btn" id="search-button" onclick="Materialize.toast('Click a language for skill breakdown!', 3000)">Submit</a>
         <p class="center-align"><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Put in your zipcode and hit submit to see current language trends.">Need help?</a></p>
       </form>
     </div>
@@ -32,14 +50,16 @@
     </div>
   </div>
 
+  <!-- Chart -->
   <div id="chart"></div>
 
+  <!-- Meetup results -->
   <ul id="meetupResults">
   </ul>
 
   <div class="row">
-    <div class="col s6 offset-s3" ng-repeat="meetup in meetupEvents">
-      <div class="card blue-grey darken-1">
+    <div class="col s8 offset-s2" ng-repeat="meetup in meetupEvents">
+      <div class="card blue-grey darken-1 z-depth-3">
         <div class="card-content white-text">
           <span class="card-title">{{meetup.name}}</span>
           <p>{{meetup.description | stripHtmlTags }}</p>
@@ -52,6 +72,7 @@
   </div>
 
 
+  <!-- Homepage Info -->
   <div ng-show="landingPage" class="container">
     <div class="section">
 
@@ -90,7 +111,8 @@
   </div>
 
 
-  <footer ng-show="landingPage" class="teal darken-3">
+  <!-- footer -->
+  <footer ng-show="landingPage" class="blue-grey darken-1">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -108,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div class="footer-copyright teal darken-4">
+    <div class="footer-copyright blue-grey darken-2">
       <div class="container">
         Powered by <a class="orange-text text-lighten-4" href="http://www.turing.io">Turing</a>
       </div>

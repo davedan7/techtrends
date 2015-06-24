@@ -1,6 +1,6 @@
 app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetupApiKey', function($scope, JobSearch, MeetupSearch, meetupApiKey){
 
-  $scope.zipcode               = "80202";
+  // $scope.zipcode;               = "80202";
   $scope.developerSearchWords  = ['web+developer', "front-end", "front+end", "back-end", "engineer", "full+stack", "developer"];
 
   $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, java: 0};
@@ -24,6 +24,11 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
         generateTitleChart();
       });
     }
+  };
+
+  $scope.resetSearch = function() {
+    $scope.searchField = true;
+    $scope.landingPage = false;
   };
 
 
@@ -145,7 +150,11 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
           ["ReactJS",     $scope.descriptionDataPoints.react + $scope.descriptionDataPoints.reactjs],
           ["Node",        $scope.descriptionDataPoints.node + $scope.descriptionDataPoints.nodejs],
           ["Backbone",    $scope.descriptionDataPoints.backbone],
-        ]
+        ],
+      Ruby:
+      [
+        ["Rails", $scope.descriptionDataPoints.rails]
+      ]
     };
 
     var chart = c3.generate({
