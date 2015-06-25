@@ -29,6 +29,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
   $scope.resetSearch = function() {
     $scope.searchField = true;
     $scope.landingPage = false;
+    $scope.chartHelper = false;
   };
 
 
@@ -91,7 +92,12 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
   // };
 // Title  chart
  
+  var toggleChartHelper = function() {
+    $scope.chartHelper = !$scope.chartHelper;
+  };
+
   var generateTitleChart = function() {
+    toggleChartHelper();
 
     var chart = c3.generate({
       data: {
