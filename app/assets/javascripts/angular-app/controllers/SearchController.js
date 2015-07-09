@@ -4,7 +4,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
   $scope.developerSearchWords  = ["front-end", "front+end", "back-end","back+end", "engineer", "full+stack", "developer"];
 
   $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, scala: 0, clojure: 0};
-  $scope.descriptionDataPoints = {javascript: 0, ruby: 0, rails: 0, django: 0, flask: 0, pyramid: 0, lotus: 0, sinatra: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0, scalatra: 0, lift: 0, akaa: 0, compojure: 0, pedestal: 0, hoplon: 0, ring: 0, playnice: 0 };
+  $scope.descriptionDataPoints = {javascript: 0, ember: 0, emberjs: 0, meteor: 0, meteorjs: 0, ruby: 0, rails: 0, django: 0, flask: 0, pyramid: 0, lotus: 0, sinatra: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0, scalatra: 0, lift: 0, akaa: 0, compojure: 0, pedestal: 0, hoplon: 0, ring: 0, playnice: 0 };
 
 // Job Search
 
@@ -87,11 +87,8 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     });
   };
 
-  // var RedditSearch = function(searchWord) {
-  //   RedditSearch.seach
-  // };
 // Title  chart
- 
+
   var toggleChartHelper = function() {
     $scope.chartHelper = !$scope.chartHelper;
   };
@@ -102,21 +99,20 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
     var chart = c3.generate({
       data: {
         bindto: '.chart',
-        columns: 
+        columns:
         [
           ['data1', 30],
           ['data2', 120],
         ],
 
         type : 'pie',
-        onclick: function (d) { 
+        onclick: function (d) {
           $scope.detailsFor = d.id;
           generateDescriptionChart(d.id);
         },
       }
     });
 
-  // $scope.titleDataPoints = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, react: 0, reactjs: 0};
     setTimeout(function () {
       chart.load({
         columns: [
@@ -144,14 +140,16 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
   var generateDescriptionChart = function(language) {
 
-    
+
     var datasets = {
-      Javascript: 
+      Javascript:
         [
-          ["AngularJS",   $scope.descriptionDataPoints.angular + $scope.descriptionDataPoints.angularjs],
-          ["ReactJS",     $scope.descriptionDataPoints.react + $scope.descriptionDataPoints.reactjs],
+          ["Angular",   $scope.descriptionDataPoints.angular + $scope.descriptionDataPoints.angularjs],
+          ["React",     $scope.descriptionDataPoints.react + $scope.descriptionDataPoints.reactjs],
           ["Node",        $scope.descriptionDataPoints.node + $scope.descriptionDataPoints.nodejs],
+          ["Ember",       $scope.descriptionDataPoints.ember + $scope.descriptionDataPoints.emberjs],
           ["Backbone",    $scope.descriptionDataPoints.backbone],
+          ["Meteor",      $scope.descriptionDataPoints.meteor + $scope.descriptionDataPoints.meteorjs],
         ],
       Ruby:
         [
@@ -215,4 +213,3 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
   };
 
 }]);
-

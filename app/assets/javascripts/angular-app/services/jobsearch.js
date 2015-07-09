@@ -7,4 +7,3 @@ app.service('JobSearch', function($http){
     return $http.get(rootUrl + zip + '&textinput2=' + parsedTerm);
   };
 });
-{ }
