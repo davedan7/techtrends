@@ -1,4 +1,3 @@
-
 app.service('JobSearch', function($http){
   var rootUrl = "https://pipes.yahoo.com/pipes/pipe.run?_id=9cb44301dcece96db1d28de6959bd25c&_render=json&locationinput1=";  // Yahoo pipes address for query
 

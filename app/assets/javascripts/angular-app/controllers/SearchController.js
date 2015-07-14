@@ -16,6 +16,7 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
       $scope.zipSearch = true;
       JobSearch.search($scope.zipcode, $scope.developerSearchWords[i])  // Perform query for each title search word
       .success(function(data){
+        console.log(data);
         titleParse(data);
         descriptionParse(data);
       }).catch(function(err) {
