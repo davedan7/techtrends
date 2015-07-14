@@ -19,11 +19,11 @@ var Post = React.createClass({
 
   render: function() {
     var charts
-    if (this.state.zipcode) {
-      charts = <Charts zipcode={this.state.zipcode} />
-    } else {
-      charts = "" // loading ? 
-    }
+    // if (this.state.zipcode) {
+    //   charts = <Charts zipcode={this.state.zipcode} />
+    // } else {
+    //   charts = "" // loading ? 
+    // }
     return (
       <div className="container" id="search-field">
         <div className="row">
@@ -38,7 +38,10 @@ var Post = React.createClass({
         </div>
         <div className="center row">
           <h5 className="medium job-chart">Developer jobs in {this.state.zipcocde}</h5>
-          {charts}
+          <loading loading={this.state.loading}>
+          // {charts}
+            <Charts zipcode={this.state.zipcode} />
+          </loading>
         </div>
       </div>
     );
