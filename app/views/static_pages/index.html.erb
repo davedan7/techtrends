@@ -41,7 +41,7 @@
     <div class="row" ng-show="searchField">
       <form class="center col s4 offset-s4">
         <input ng-model="zipcode" type="text" class="center-align" placeholder="Insert Your Zip Code" required>
-        <a href="" ng-click="submitSearch()" class="waves-effect waves-light btn z-depth-2 yellow darken-1 black-text" id="search-button" onclick="Materialize.toast('Click a language for skill breakdown!', 3000)">Submit</a>
+        <button ng-click="submitSearch()" class="waves-effect waves-light btn z-depth-2 yellow darken-1 black-text" id="search-button" onclick="Materialize.toast('Click a language for skill breakdown!', 3000)">Submit</button>
         <p class="center-align"><a class="tooltipped black-text" data-position="bottom" data-delay="50" data-tooltip="Put in your zip code and hit submit to see current language trends.">Need help?</a></p>
       </form>
     </div>
@@ -64,7 +64,7 @@
           <p class="thin">{{meetup.description | stripHtmlTags }}</p>
         </div>
         <div class="card-action">
-          <a href="" class="orange-text text-lighten-3" href="{{meetup.link}}">Check them out on Meetup</a>
+          <a href="{{meetup.link}}" class="orange-text text-lighten-3" >Check them out on Meetup</a>
         </div>
       </div>
     </div>
