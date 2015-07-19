@@ -11,4 +11,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 # Rails.application.config.assets.precompile += %w( react_init.js )
-Rails.application.config.assets.precompile += %w( clean-code.jpg )
+# Rails.application.config.assets.precompile += %w( clean-code.jpg )
+Rails.application.config.assets.precompile += %w( style.css )
