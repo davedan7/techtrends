@@ -46,17 +46,18 @@
       </form>
     </div>
     <div ng-show="zipSearch" class="center row">
-      <h5 class="medium job-chart">Developer jobs in {{ zipcode }}</h5>
+      <h5 ng-hide ="showMeetups" class="medium job-chart">Developer jobs in {{ zipcode }}</h5>
+      <h5 ng-show = "showMeetups"class="medium job-chart">{{ breakdownLanguage }} Meetups for {{ zipcode }}</h5>
     </div>
   </div>
 
   <!-- Chart -->
-  <div id="chart"></div>
+  <div id="chart" ng-show="showChart"></div>
   <p class="center-align" ng-show="chartHelper"><a class="tooltipped black-text" data-position="bottom" data-delay="50" data-tooltip="Click on a language for more details.">Need help?</a></p>
 
   <!-- Meetup results -->
 
-  <div class="row">
+  <div ng-show="showMeetups" class="row">
     <div class="col s8 offset-s2" ng-repeat="meetup in meetupEvents">
       <div class="card grey darken-2 z-depth-3">
         <div class="card-content white-text thin">

@@ -4,11 +4,14 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
   $scope.developerSearchWords  = ["front-end", "front+end", "back-end","back+end", "engineer", "full+stack", "developer"];
 
   $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, scala: 0, clojure: 0};
-  $scope.descriptionDataPoints = {javascript: 0, ember: 0, emberjs: 0, meteor: 0, meteorjs: 0, ruby: 0, rails: 0, django: 0, flask: 0, pyramid: 0, lotus: 0, sinatra: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backbone: 0, scalatra: 0, lift: 0, akaa: 0, compojure: 0, pedestal: 0, hoplon: 0, ring: 0, playnice: 0 };
+  $scope.descriptionDataPoints = {javascript: 0, ember: 0, emberjs: 0, meteor: 0, meteorjs: 0, ruby: 0, rails: 0, django: 0, flask: 0, pyramid: 0, lotus: 0, sinatra: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backgonejs: 0, backbone: 0, scalatra: 0, lift: 0, akaa: 0, compojure: 0, pedestal: 0, hoplon: 0, ring: 0, playnice: 0 };
 
 // Job Search
 
   $scope.zipSearch = false;
+  $scope.showChart = false;
+  $scope.showMeetups = false;
+  $scope.breakdownLanguage = "";
 
   $scope.submitSearch = function() { // Is there a way to refactor out the chain of promises?
     $scope.searchField = false;
@@ -22,15 +25,25 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
       }).catch(function(err) {
         console.log("Page didn't load correctly");
       }).finally(function(){
+        $scope.showChart = true;
         generateTitleChart();
       });
     }
   };
 
-  $scope.resetSearch = function() {
-    $scope.searchField = true;
-    $scope.landingPage = false;
-    $scope.chartHelper = false;
+
+  // Reset the view and search datapoints to their original value
+  $scope.resetSearch = function() {  // There has to be a better way to do this than resetting each point individually
+    $scope.searchField           = true;
+    $scope.landingPage           = false;
+    $scope.chartHelper           = false;
+    $scope.showChart             = false;
+    $scope.zipSearch             = false;
+    $scope.showChart             = false;
+    $scope.showMeetups           = false;
+    $scope.zipcode               = "";
+    $scope.titleDataPoints       = {javascript: 0, ruby: 0, python: 0, go: 0, angularjs: 0, angular: 0, react: 0, reactjs: 0, php: 0, scala: 0, clojure: 0};
+    $scope.descriptionDataPoints = {javascript: 0, ember: 0, emberjs: 0, meteor: 0, meteorjs: 0, ruby: 0, rails: 0, django: 0, flask: 0, pyramid: 0, lotus: 0, sinatra: 0, angular: 0, angularjs: 0, node: 0, jquery: 0, json: 0, react: 0, reactjs: 0, nodejs: 0, backgonejs: 0, backbone: 0, scalatra: 0, lift: 0, akaa: 0, compojure: 0, pedestal: 0, hoplon: 0, ring: 0, playnice: 0 };
   };
 
 
@@ -141,16 +154,15 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
 
   var generateDescriptionChart = function(language) {
 
-
     var datasets = {
       Javascript:
         [
           ["Angular",   $scope.descriptionDataPoints.angular + $scope.descriptionDataPoints.angularjs],
           ["React",     $scope.descriptionDataPoints.react + $scope.descriptionDataPoints.reactjs],
-          ["Node",        $scope.descriptionDataPoints.node + $scope.descriptionDataPoints.nodejs],
-          ["Ember",       $scope.descriptionDataPoints.ember + $scope.descriptionDataPoints.emberjs],
-          ["Backbone",    $scope.descriptionDataPoints.backbone],
-          ["Meteor",      $scope.descriptionDataPoints.meteor + $scope.descriptionDataPoints.meteorjs],
+          ["Node",      $scope.descriptionDataPoints.node + $scope.descriptionDataPoints.nodejs],
+          ["Ember",     $scope.descriptionDataPoints.ember + $scope.descriptionDataPoints.emberjs],
+          ["Backbone",  $scope.descriptionDataPoints.backbone + $scope.descript],
+          ["Meteor",    $scope.descriptionDataPoints.meteor + $scope.descriptionDataPoints.meteorjs],
         ],
       Ruby:
         [
@@ -189,7 +201,13 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
             ['data2', 120],
           ],
           type : 'donut',
-          onclick: function (d, i) { searchMeetup(d.id); },
+          onclick: function (d, i) { 
+            searchMeetup(d.id); 
+            $scope.showMeetups = true;
+            // $scope.showChart = false;
+            $scope.breakdownLanguage = d.id;
+          },
+
         },
         donut: {
           title: $scope.detailsFor + " Breakdown"
@@ -211,6 +229,8 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
         ids: 'data2'
       });
     }, 2500);
+
+
   };
 
 }]);
