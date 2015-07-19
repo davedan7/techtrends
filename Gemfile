@@ -19,7 +19,7 @@ gem 'figaro'
 gem 'execjs'
 gem 'therubyracer'
 gem 'hurley'
-gem 'skylight'
+# gem 'skylight'
 gem 'react-rails', '~> 1.0'
 
 gem 'rails_12factor', group: :production
