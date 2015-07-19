@@ -204,8 +204,9 @@ app.controller('SearchController', ['$scope', 'JobSearch','MeetupSearch', 'meetu
           onclick: function (d, i) { 
             searchMeetup(d.id); 
             $scope.showMeetups = true;
-            // $scope.showChart = false;
+            $scope.showChart = false;
             $scope.breakdownLanguage = d.id;
+            toggleChartHelper();
           },
 
         },
