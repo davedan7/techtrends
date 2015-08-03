@@ -7,3 +7,7 @@ A single-page application written to help web developers visualize current job t
 Written with AngularJS, it utilizes Yahoo Pipes to query 6 leading search engines for web-development related jobs by location, visualizes current trends using d3.js, and provides networking suggestions based popular frameworks of a particular language through querying Meetup.com's API.
 
 http://futureproofme.herokuapp.com/
+
+Note: Do to time constraints of the workload at Turing, only the JavaScript functionality is entirely built out.
+
+
